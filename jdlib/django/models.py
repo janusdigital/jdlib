@@ -1,14 +1,9 @@
-import zoneinfo
-
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from jdlib.django.fields import AutoCreatedField, AutoUpdatedField, UUIDField
-
-
-def get_timezone_choices():
-    return [(tz, tz) for tz in sorted(zoneinfo.available_timezones())]
+from jdlib.django.middleware import get_timezone_choices
 
 
 class TimestampedMixin(models.Model):

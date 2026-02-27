@@ -1,6 +1,10 @@
-from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+from zoneinfo import available_timezones, ZoneInfo, ZoneInfoNotFoundError
 
 from django.utils import timezone
+
+
+def get_timezone_choices():
+    return [(tz, tz) for tz in sorted(available_timezones())]
 
 
 class TimezoneMiddleware:
