@@ -4,6 +4,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- Environment parsing module `jdlib.env`
+
 ### Changed
 
 - Moved `get_timezone_choices()` to `middleware.py`
