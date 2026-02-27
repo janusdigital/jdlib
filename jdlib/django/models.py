@@ -1,3 +1,5 @@
+import zoneinfo
+
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -5,9 +7,20 @@ from django.utils.translation import gettext_lazy as _
 from jdlib.django.fields import AutoCreatedField, AutoUpdatedField, UUIDField
 
 
+def get_timezone_choices():
+    return [(tz, tz) for tz in sorted(zoneinfo.available_timezones())]
+
+
 class TimestampedMixin(models.Model):
     created_at = AutoCreatedField()
     updated_at = AutoUpdatedField()
+
+    class Meta:
+        abstract = True
+
+
+class TimezoneMixin(models.Model):
+    timezone = models.CharField(max_length=50, choices=get_timezone_choices, default='UTC', verbose_name='Timezone')
 
     class Meta:
         abstract = True
