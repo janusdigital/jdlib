@@ -42,6 +42,9 @@ class Env:
             return cast(value)
         return _cast(value)
 
+    def __contains__(self, key):
+        return key in os.environ
+
     def str(self, key, default=None):
         return self(key, default=default, cast=str)
 
