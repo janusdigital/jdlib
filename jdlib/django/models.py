@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from jdlib.django.fields import AutoCreatedField, AutoUpdatedField, UUIDField
+from jdlib.django.mail import send_mail
 from jdlib.django.middleware import get_timezone_choices
 
 
@@ -36,6 +37,9 @@ class Model(TimestampedMixin, UUIDMixin):
 class User(AbstractUser, UUIDMixin):
     class Meta:
         abstract = True
+
+    def email_user(self, subject, message, from_email, **kwargs):
+        send_mail(subject, message, from_email, [self.email])
 
 
 class EmailUserManager(BaseUserManager):

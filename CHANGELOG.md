@@ -2,6 +2,17 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.0.5] - 2026-03-05
+
+### Added
+
+- Django specific `send_mail` function. Used to surface unconfigured `settings.py` variables
+
+### Changed
+
+- Pass `domain` and `api_key` to `jdlib.mail.send_email` with environment fallback
+- Swap `django.core.mail.send_mail` with `jdlib.django.mail.send_mail` for `User.email_user`
+
 ## [0.0.4] - 2026-03-05
 
 ### Added
