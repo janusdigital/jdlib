@@ -4,6 +4,13 @@ _BOOL_TRUE = frozenset(('true', '1', 'yes'))
 _BOOL_FALSE = frozenset(('false', '0', 'no', ''))
 
 
+def get(key, default=None):
+    value = os.environ.get(key, default)
+    if value is None:
+        raise ValueError(f'Environment variable `{key}` not set.')
+    return value
+
+
 def _cast(value):
     if not isinstance(value, str):
         return value
