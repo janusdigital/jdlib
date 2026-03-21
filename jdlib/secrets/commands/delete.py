@@ -11,6 +11,6 @@ class Command(BaseCommand, ShellCommandMixin):
     def handle(self, **options):
         name = options['name']
         try:
-            self.run_command(f'secret-tool clear collection jdlib name {name}')
+            self.run_command(['secret-tool', 'clear', 'collection', 'jdlib', 'name', name])
         except CalledProcessError:
             pass

@@ -13,7 +13,7 @@ class Command(BaseCommand, ShellCommandMixin):
 
     def handle(self):
         try:
-            output = self.run_command('secret-tool search --all collection jdlib')
+            output = self.run_command(['secret-tool', 'search', '--all', 'collection', 'jdlib'])
             for secret in sorted(self.extract_labels(output)):
                 print(secret)
         except CalledProcessError:

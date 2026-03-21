@@ -11,7 +11,7 @@ class Command(BaseCommand, ShellCommandMixin):
     def handle(self, **options):
         name = options['name']
         try:
-            output = self.run_command(f'secret-tool lookup collection jdlib name {name}')
+            output = self.run_command(['secret-tool', 'lookup', 'collection', 'jdlib', 'name', name])
             self.stdout.write(output)
         except CalledProcessError:
             pass

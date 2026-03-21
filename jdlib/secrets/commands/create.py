@@ -16,7 +16,12 @@ class Command(BaseCommand, ShellCommandMixin):
         if result is None:
             password = getpass.getpass('').strip()
             try:
-                self.run_command(f'echo "{password}" | secret-tool store --collection="/org/freedesktop/secrets/collection/jdlib" --label="{name}" collection jdlib name {name}')
+                self.run_command([
+                    'secret-tool', 'store',
+                    '--collection=/org/freedesktop/secrets/collection/jdlib',
+                    f'--label={name}',
+                    'collection', 'jdlib', 'name', name,
+                ], input=password)
             except CalledProcessError:
                 pass
         else:

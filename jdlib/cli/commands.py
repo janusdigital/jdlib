@@ -37,6 +37,6 @@ class BaseCommand(ABC):
 class ShellCommandMixin:
     """Mixin that provides shell command execution."""
 
-    def run_command(self, command):
-        result = subprocess.run(command, check=True, shell=True, capture_output=True, text=True)
+    def run_command(self, command, input=None):
+        result = subprocess.run(command, check=True, capture_output=True, text=True, input=input)
         return result.stdout.strip()
