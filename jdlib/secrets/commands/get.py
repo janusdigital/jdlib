@@ -1,4 +1,3 @@
-import sys
 from argparse import ArgumentParser
 from subprocess import CalledProcessError
 
@@ -13,6 +12,6 @@ class Command(BaseCommand, ShellCommandMixin):
         name = options['name']
         try:
             output = self.run_command(f'secret-tool lookup collection jdlib name {name}')
-            print(output)
+            self.stdout.write(output)
         except CalledProcessError:
-            sys.exit(1)
+            pass

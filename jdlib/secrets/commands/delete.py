@@ -1,4 +1,3 @@
-import sys
 from argparse import ArgumentParser
 from subprocess import CalledProcessError
 
@@ -14,4 +13,4 @@ class Command(BaseCommand, ShellCommandMixin):
         try:
             self.run_command(f'secret-tool clear collection jdlib name {name}')
         except CalledProcessError:
-            sys.exit(1)
+            pass

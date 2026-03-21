@@ -1,4 +1,3 @@
-import sys
 from subprocess import CalledProcessError
 
 from jdlib.cli.commands import BaseCommand, ShellCommandMixin
@@ -18,4 +17,4 @@ class Command(BaseCommand, ShellCommandMixin):
             for secret in sorted(self.extract_labels(output)):
                 print(secret)
         except CalledProcessError:
-            sys.exit(1)
+            pass

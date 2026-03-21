@@ -3,6 +3,7 @@ import importlib
 import importlib.util
 import pkgutil
 from argparse import ArgumentParser
+from io import StringIO
 from pathlib import Path
 
 import jdlib
@@ -95,6 +96,18 @@ class JDCli:
         """Import a command module and return an instance of its `Command` class."""
         mod = importlib.import_module(f'jdlib.{module}.commands.{command}')
         return mod.Command()
+
+
+def call_command(module, command, stdout=None, **kwargs):
+    """Call a command programmatically."""
+    if stdout is None:
+        stdout = StringIO()
+    mod = importlib.import_module(f'jdlib.{module}.commands.{command}')
+    cmd = mod.Command(stdout=stdout)
+    cmd.handle(**kwargs)
+    if isinstance(stdout, StringIO):
+        value = stdout.getvalue().strip()
+        return value if value != '' else None
 
 
 def main():
