@@ -2,6 +2,12 @@
 
 The format is based on [Keep a Changelog](https://kSSeepachangelog.com/en/1.1.0/).
 
+## Unreleased
+
+### Added
+
+- OpenAI wrapper (`jdlib.ai`) with async support and Django integration (`jdlib.django.ai`)
+
 ## [0.0.8] - 2026-03-23
 
 ### Added
