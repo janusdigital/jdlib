@@ -2,7 +2,15 @@
 
 The format is based on [Keep a Changelog](https://kSSeepachangelog.com/en/1.1.0/).
 
-## Unreleased
+## [0.0.8] - 2026-03-23
+
+### Added
+
+- Mailgun backend (via `anymail`) with optional `django-rq` queuing
+
+### Removed
+
+- `jdlib.mail` and `jdlib.django.mail.send_mail` in favor of `jdlib.django.backends.EmailBackend`
 
 ### Security
 
