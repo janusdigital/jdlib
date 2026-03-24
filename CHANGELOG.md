@@ -2,12 +2,13 @@
 
 The format is based on [Keep a Changelog](https://kSSeepachangelog.com/en/1.1.0/).
 
-## Unreleased
+## [0.0.9] - 2026-03-24
 
 ### Added
 
 - OpenAI wrapper (`jdlib.ai`) with async support and Django integration (`jdlib.django.ai`)
 - `UUIDModelAdmin` to display `uuid`, `created_at`, and `updated_at` in admin
+- Admin interface for `User` and `EmailUser`
 
 ### Removed
 
