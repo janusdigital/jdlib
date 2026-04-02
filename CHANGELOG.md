@@ -2,6 +2,12 @@
 
 The format is based on [Keep a Changelog](https://kSSeepachangelog.com/en/1.1.0/).
 
+## [0.1.0] - 2026-03-24
+
+### Changed
+
+- Renamed `UUIDModelAdmin` to `ModelAdmin` to match convention
+
 ## [0.0.9] - 2026-03-24
 
 ### Added

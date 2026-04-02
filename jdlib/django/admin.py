@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
 
 
-class UUIDModelAdmin(admin.ModelAdmin):
+class ModelAdmin(admin.ModelAdmin):
     readonly_fields = ('uuid',)
 
     def get_readonly_fields(self, request, obj=None):
