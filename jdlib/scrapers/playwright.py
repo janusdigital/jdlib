@@ -47,8 +47,8 @@ class Scraper:
         return self._browser
     
     def _close_browser(self):
-        """Close browser. Will be restarted when `self.browser` is called."""
-        if self._browser is None:
+        """Close browser."""
+        if self._browser is not None:
             logger.info('Shutting down browser.')
             self._browser.close()
             self._browser = None
