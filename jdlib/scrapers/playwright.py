@@ -5,6 +5,7 @@ import time
 from playwright.sync_api import sync_playwright
 
 from jdlib.scrapers.exceptions import HttpError
+from jdlib.scrapers.utils import get_random_ua
 
 logger = logging.getLogger(__name__)
 
@@ -45,7 +46,9 @@ class Scraper:
             self._playwright = sync_playwright().start()
 
     def get(self, url, *, raise_exception=False, wait_until='networkidle'):
-        context = self.browser.new_context()
+        context = self.browser.new_context(
+            user_agent=get_random_ua(),
+        )
         try:
             page = context.new_page()
             logger.info('GET %s', url)
