@@ -14,11 +14,12 @@ logger = logging.getLogger(__name__)
 class Scraper:
     """A web scraper that maintains a reusuble Playwright browser instance."""
 
-    def __init__(self, proxy=None):
+    def __init__(self, proxy=None, request_interceptor=None):
         self._playwright = None
         self._browser = None
 
         self._proxy = proxy
+        self._request_interceptor = request_interceptor
 
     def __enter__(self):
         return self
@@ -64,6 +65,8 @@ class Scraper:
         )
         try:
             page = context.new_page()
+            if self._request_interceptor:
+                page.route('**/*', self._request_interceptor)
             logger.info('GET %s', url)
             response = page.goto(url, wait_until=wait_until)
             if response is None or response.status >= 400:
