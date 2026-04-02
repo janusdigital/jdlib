@@ -1,6 +1,7 @@
 import logging
 import random
 import time
+from urllib.parse import urlparse
 
 from playwright.sync_api import sync_playwright
 
@@ -13,9 +14,11 @@ logger = logging.getLogger(__name__)
 class Scraper:
     """A web scraper that maintains a reusuble Playwright browser instance."""
 
-    def __init__(self):
+    def __init__(self, proxy=None):
         self._playwright = None
         self._browser = None
+
+        self._proxy = proxy
 
     def __enter__(self):
         return self
@@ -30,6 +33,16 @@ class Scraper:
             self._ensure_playwright()
             logger.info('Launching browser.')
             kwargs = {'headless': True}
+            if self._proxy:
+                parsed = urlparse(self._proxy)
+                proxy_config: dict[str, str] = {
+                    'server': f'{parsed.scheme}://{parsed.hostname}:{parsed.port}',
+                }
+                if parsed.username:
+                    proxy_config['username'] = parsed.username
+                if parsed.password:
+                    proxy_config['password'] = parsed.password
+                kwargs['proxy'] = proxy_config
             self._browser = self._playwright.chromium.launch(**kwargs)
         return self._browser
     
