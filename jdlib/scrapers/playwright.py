@@ -1,4 +1,6 @@
 import logging
+import random
+import time
 
 from playwright.sync_api import sync_playwright
 
@@ -56,6 +58,25 @@ class Scraper:
             return page.content()
         finally:
             context.close()
+
+    def get_with_retry(self, url, *, wait_until='networkidle', max_retries=8, base_delay=1.0):
+        for attempt in range(max_retries + 1):
+            try:
+                return self.get(url, wait_until=wait_until)
+            except Exception:
+                delay = base_delay * (2 ** attempt) + random.uniform(0, 1)
+                logger.warning(
+                    'Attempt %d/%d failed for %s. retrying in %.1fs.',
+                    attempt + 1,
+                    max_retries + 1,
+                    url,
+                    delay,
+                )
+                time.sleep(delay)
+                self._close_browser()
+        logger.warning('Max retries for %s exceeded.', url)
+        return None
+
 
     def close(self):
         """Close browser and playwright."""
