@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://kSSeepachangelog.com/en/1.1.0/
 ### Added
 
 - `jdlib.django.rq.TaskChain` to chain queue tasks
+- `jdlib.scrapers` module with initial `playwright` scraper
 
 ## [0.1.0] - 2026-03-24
 
