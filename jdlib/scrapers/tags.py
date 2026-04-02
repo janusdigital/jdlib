@@ -41,7 +41,7 @@ class NullableTag:
             return ''
         return self._tag.get_text(strip=True)
 
-    def get(self, key, default):
+    def get(self, key, default=None):
         if self._tag is None:
             return default
         return self._tag.get(key, default)

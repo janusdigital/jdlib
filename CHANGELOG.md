@@ -2,6 +2,12 @@
 
 The format is based on [Keep a Changelog](https://kSSeepachangelog.com/en/1.1.0/).
 
+## Unreleased
+
+## Fixed
+
+- Make argument `default` in `jdlib.scrapers.tags.NullableTag.get()` optional
+
 ## [0.1.1] - 2026-04-02
 
 ### Added
