@@ -2,6 +2,12 @@
 
 The format is based on [Keep a Changelog](https://kSSeepachangelog.com/en/1.1.0/).
 
+## Unreleased
+
+### Added
+
+- `jdlib.django.rq.TaskChain` to chain queue tasks
+
 ## [0.1.0] - 2026-03-24
 
 ### Changed
