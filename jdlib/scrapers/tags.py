@@ -56,5 +56,5 @@ class NullableTag:
 
     def __repr__(self):
         if self._tag is None:
-            return None
-        return f'NullableTag({self._tag!r})'
+            return 'None'
+        return repr(self._tag)

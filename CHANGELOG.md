@@ -4,7 +4,11 @@ The format is based on [Keep a Changelog](https://kSSeepachangelog.com/en/1.1.0/
 
 ## Unreleased
 
-## Fixed
+### Removed
+
+- R`NullableTag` text wrapping from `NullableTag.__repr__`
+
+### Fixed
 
 - Make argument `default` in `jdlib.scrapers.tags.NullableTag.get()` optional
 
