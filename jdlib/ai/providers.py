@@ -1,5 +1,16 @@
+from dataclasses import dataclass
+
 from openai import AsyncOpenAI as AsyncOpenAIClient
 from openai import OpenAI as OpenAIClient
+from openai.types import CompletionUsage
+
+
+@dataclass
+class ChatResponse:
+    """Response from a chat completion request."""
+
+    content: str | None
+    usage: CompletionUsage | None
 
 
 class OpenAI:
@@ -22,12 +33,12 @@ class OpenAI:
     def chat(self, messages, **kwargs):
         """Send a chat completion request and return the response content."""
         response = self.client.chat.completions.create(**self._chat_params(messages, **kwargs))
-        return response.choices[0].message.content
+        return ChatResponse(content=response.choices[0].message.content, usage=response.usage)
 
     async def achat(self, messages, **kwargs):
         """Send an async chat completion request and return the response content."""
         response = await self.async_client.chat.completions.create(**self._chat_params(messages, **kwargs))
-        return response.choices[0].message.content
+        return ChatResponse(content=response.choices[0].message.content, usage=response.usage)
 
     def complete(self, prompt, system=None, **kwargs):
         """Send a single prompt completion request."""

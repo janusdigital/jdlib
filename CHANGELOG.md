@@ -1,12 +1,20 @@
 # Changelog
 
-The format is based on [Keep a Changelog](https://kSSeepachangelog.com/en/1.1.0/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## Unreleased
+## [0.1.2] - 2026-04-04
+
+### Added
+
+- `jdlib.ai.utils` module with `parse_json_response` for parsing JSON from LLM responses
+
+### Changed
+
+- `jdlib.ai.providers.OpenAI` chat methods now return `ChatResponse` dataclass with `content` and `usage` attributes
 
 ### Removed
 
-- R`NullableTag` text wrapping from `NullableTag.__repr__`
+- `NullableTag` text wrapping from `NullableTag.__repr__`
 
 ### Fixed
 
